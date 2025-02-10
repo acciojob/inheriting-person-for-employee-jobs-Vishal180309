@@ -20,13 +20,10 @@ class Employee extends Person {
     }
 }
 
-document.getElementById('create-person-button').addEventListener('click', function() {
-    const person = new Person('Alice', 25);
-    person.greet();
-});
+// Test the classes
+const person = new Person('Alice', 25);
+person.greet();
 
-document.getElementById('create-employee-button').addEventListener('click', function() {
-    const employee = new Employee('Bob', 30, 'Manager');
-    employee.greet();
-    employee.jobGreet();
-});
+const employee = new Employee('Bob', 30, 'Manager');
+employee.greet();
+employee.jobGreet();

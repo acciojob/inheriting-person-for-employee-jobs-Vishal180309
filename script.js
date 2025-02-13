@@ -6,6 +6,7 @@ class Person {
 
     greet() {
         console.log(`Hello, my name is ${this.name}, I am ${this.age} years old.`);
+        document.getElementById("output").innerHTML += `<p>Hello, my name is ${this.name}, I am ${this.age} years old.</p>`;
     }
 }
 
@@ -17,13 +18,16 @@ class Employee extends Person {
 
     jobGreet() {
         console.log(`Hello, my name is ${this.name}, I am ${this.age} years old, and my job title is ${this.jobTitle}.`);
+        document.getElementById("output").innerHTML += `<p>Hello, my name is ${this.name}, I am ${this.age} years old, and my job title is ${this.jobTitle}.</p>`;
     }
 }
 
-// Test the classes
-const person = new Person('Alice', 25);
-person.greet();
+document.getElementById("person-btn").addEventListener("click", () => {
+    const person = new Person("Alice", 25);
+    person.greet();
+});
 
-const employee = new Employee('Bob', 30, 'Manager');
-employee.greet();
-employee.jobGreet();
+document.getElementById("employee-btn").addEventListener("click", () => {
+    const employee = new Employee("Bob", 30, "Manager");
+    employee.jobGreet();
+});

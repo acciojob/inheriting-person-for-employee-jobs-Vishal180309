@@ -1,33 +1,27 @@
-class Person {
-    constructor(name, age) {
-        this.name = name;
-        this.age = age;
-    }
-
-    greet() {
-        console.log(`Hello, my name is ${this.name}, I am ${this.age} years old.`);
-    }
+function Person(name, age) {
+    this.name = name;
+    this.age = age;
 }
 
-class Employee extends Person {
-    constructor(name, age, jobTitle) {
-        super(name, age);
-        this.jobTitle = jobTitle;
-    }
+// Add greet method to Person prototype
+Person.prototype.greet = function() {
+    console.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`);
+};
 
-    jobGreet() {
-        console.log(`Hello, my name is ${this.name}, I am ${this.age} years old, and my job title is ${this.jobTitle}.`);
-    }
+function Employee(name, age, jobTitle) {
+    Person.call(this, name, age); // Call Person constructor
+    this.jobTitle = jobTitle;
 }
 
-document.getElementById("person-btn").addEventListener("click", () => {
-    const person = new Person("Alice", 25);
-    person.greet();
-    document.getElementById("output").innerText = person.name + " " + person.age;
-});
+// Set up inheritance
+Employee.prototype = Object.create(Person.prototype);
+Employee.prototype.constructor = Employee;
 
-document.getElementById("employee-btn").addEventListener("click", () => {
-    const employee = new Employee("Bob", 30, "Manager");
-    employee.jobGreet();
-    document.getElementById("output").innerText = employee.name + " " + employee.age + " " + employee.jobTitle;
-});
+// Add jobGreet method to Employee prototype
+Employee.prototype.jobGreet = function() {
+    console.log(`Hello, my name is ${this.name}, I am ${this.age} years old, and my job title is ${this.jobTitle}.`);
+};
+
+// Do not change code below this line
+window.Person = Person;
+window.Employee = Employee;
